@@ -51,8 +51,8 @@ function App() {
         <Route path="/pokedex">
           <Pokedex pokemons={displayInPokedex} />
         </Route>
-        <Route path="/pokemon/:id">
-          <PokemonPage pokemons={pokemons} />
+        <Route path="/pokemon/:name">
+          <PokemonPage />
         </Route>
       </Switch>
     </div>
