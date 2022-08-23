@@ -1,5 +1,5 @@
 {
-  "pokemon": [
+  "pokemons": [
     {
       "id": 2,
       "name": "ivysaur",
@@ -19,7 +19,7 @@
         "front": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png",
         "back": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/3.png"
       },
-      "inPokedex": false,
+      "inPokedex": true,
       "nickname": ""
     },
     {
@@ -30,7 +30,7 @@
         "front": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
         "back": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/4.png"
       },
-      "inPokedex": false,
+      "inPokedex": true,
       "nickname": ""
     },
     {
@@ -41,7 +41,7 @@
         "front": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/5.png",
         "back": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/5.png"
       },
-      "inPokedex": false,
+      "inPokedex": true,
       "nickname": ""
     },
     {
@@ -74,7 +74,7 @@
         "front": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/8.png",
         "back": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/8.png"
       },
-      "inPokedex": false,
+      "inPokedex": true,
       "nickname": ""
     },
     {
