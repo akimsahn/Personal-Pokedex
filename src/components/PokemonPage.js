@@ -5,7 +5,6 @@ import PokemonCard from "./PokemonCard";
 function PokemonPage() {
     const location = useLocation()
     const { pokemon } = location.state
-g
 
     return (
         <div>
