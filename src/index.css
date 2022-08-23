@@ -33,6 +33,10 @@ h3 {
   height: 150px;
 }
 
+.card img {
+  width: 100px;
+}
+
 .navbar {
   background: url(./images/header.png);
   background-size: cover;

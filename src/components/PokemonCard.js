@@ -21,7 +21,7 @@ function PokemonCard({ pokemon, onUpdatePokemon }) {
     return (
         <div className='card'>
             <Link to={`/pokemon/${id}`}>
-                <img src={sprites.front} alt="pokemon portrait" />
+                <img src={sprites.other["official-artwork"]["front_default"]} alt="pokemon_pic" />
             </Link>
             <span id="add-button" onClick={handleClick}>{inPokedex ? '✖️' : '➕'}</span>
             <h3>{name}</h3>

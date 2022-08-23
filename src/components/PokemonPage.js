@@ -1,31 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useParams } from 'react-router-dom';
 import PokemonCard from "./PokemonCard";
 
-function PokemonPage() {
-    const [pokemon, setPokemon] = useState({
-        name: "",
-        hp: null,
-        sprites: {
-            front: "",
-            back: ""
-        },
-        inPokedex: false,
-        nickname: ""
-    })
+function PokemonPage({ pokemons }) {
 
     const { id } = useParams()
-    console.log(id)
 
-    useEffect(() => {
-        fetch(`http://localhost:3001/pokemons/${id}`)
-        .then(res => res.json())
-        .then(data => setPokemon(data))
-    }, [])
+    const displayPokemon = pokemons.filter(pokemon => {
+        return pokemon.id == id ? pokemon : null})
 
     return (
         <div>
-            <PokemonCard pokemon={pokemon} />
+            {console.log(displayPokemon)}
         </div>
     )
 }
