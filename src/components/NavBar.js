@@ -16,7 +16,9 @@ const linkStyles = {
 function NavBar() {
     return (
         <div className="navbar">
-            <img id="blue-button" src={blueButton} alt="blue button" />
+            <NavLink to="/home">
+                <img id="blue-button" src={blueButton} alt="blue button" />
+            </NavLink>
             <img id="colored-buttons" src={rygButtons} alt="ryg buttons" />
             <div id="links">
                 <NavLink

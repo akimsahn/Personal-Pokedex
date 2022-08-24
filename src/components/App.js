@@ -4,6 +4,7 @@ import NavBar from './NavBar';
 import Library from './Library';
 import Pokedex from './Pokedex';
 import PokemonPage from './PokemonPage';
+import HomePage from './HomePage';
 
 function App() {
   const [pokemons, setPokemons] = useState([])
@@ -50,6 +51,9 @@ function App() {
     <div>
       <NavBar />
       <Switch>
+        <Route path ="/home">
+          <HomePage />
+        </Route>
         <Route path="/library">
           <Library
             pokemons={pokemons}
@@ -61,7 +65,10 @@ function App() {
           <Pokedex pokemons={inPokedex} handlePokedex={handlePokedex} />
         </Route>
         <Route path="/pokemon/:name">
-          <PokemonPage />
+          <PokemonPage 
+            pokedex={inPokedex}
+            handlePokedex={handlePokedex}
+          />
         </Route>
       </Switch>
     </div>

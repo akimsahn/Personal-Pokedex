@@ -1,20 +1,41 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from 'react-router-dom';
+import pokeball from '../images/pokeball.png';
+import openBall from '../images/pokeball-open.png';
 import "./pokemonPage.css"
 
-function PokemonPage() {
+function PokemonPage({ pokedex, handlePokedex }) {
   const [spriteDirection, setSpriteDirection] = useState(true)
   const [pokemonFlavorText, setPokemonFlavorText] = useState([])
   const location = useLocation()
   const { pokemon } = location.state
+  const isInPokedex = pokedex.some(item => item.id === pokemon.id)
+ 
+  function handleClick() {
+    if (!isInPokedex) {
+        const pokemonData = {...pokemon,
+            nickname: ""
+        }
+
+        fetch('http://localhost:3001/pokemons', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(pokemonData)
+        })
+        .then(res => res.json())
+        .then(data => handlePokedex(data, ""))
+    } else {
+        handlePokedex(pokemon, "delete")
+    }
+}
 
   useEffect(() => {
       fetch(`${pokemon.species.url}`)
       .then(resp => resp.json())
       .then(data => setPokemonFlavorText(data.flavor_text_entries[6].flavor_text.replace("\f"," ")))
   }, [])
-
-  console.log(pokemonFlavorText)
 
   const handleSprite = () => {
       setSpriteDirection(!spriteDirection)
@@ -43,15 +64,14 @@ function PokemonPage() {
           alt={pokemon.name}
           style={{filter: "drop-shadow(2px 4px 12px black)"}}
         />
-        <p>{pokemonFlavorText}</p>
       </div>
-      {/* <div
+      <div
         className="flavor-text"
         style={{
           zIndex: "10",
           position: "absolute",
           display: "flex",
-          top: "510px",
+          top: "410px",
           left: "0",
           width: "50%",
           height: "60%",
@@ -62,7 +82,7 @@ function PokemonPage() {
         }}
       >
         <p>{pokemonFlavorText}</p>
-      </div> */}
+      </div>
       <div
         style={{
           display: "flex",
@@ -77,6 +97,7 @@ function PokemonPage() {
           <img  onClick={handleSprite} src={spriteDirection ? pokemon.sprites.front_default : pokemon.sprites.back_default} alt={pokemon.name} className="img-title"/>  
           <p style={{width: "180px", color: "black"}}>No. {pokemon.id}</p>
           <p>{pokemon.name}</p>
+          <img id="pokeball" onClick={handleClick} src={isInPokedex ? pokeball : openBall} alt="pokeball" className="pokeball-title"/>
         </div>
         <div style={{display: "flex", width: "100%"}}>
           <div
