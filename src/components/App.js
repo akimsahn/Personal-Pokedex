@@ -18,12 +18,12 @@ function App() {
         const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
         const data = await res.json()
         setPokemons(pokemons => [...pokemons, data])
-        pokemons.sort((a, b) => a.id - b.id)
       })
     }
     
     createPokemonObject(data.results)
   }
+  pokemons.sort((a, b) => a.id - b.id)
     
   useEffect(() => {
     getPokemons()
