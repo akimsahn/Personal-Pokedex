@@ -25,11 +25,16 @@
     font-size: 20px;
   }
   .stats-left > p,
-  .stats-right > p,
-  .flavor-text > p {
+  .stats-right > p {
     font-size: 20px;
     font-weight: 500;
     text-transform: capitalize;
+    padding: 10px;
+    border-bottom: 1px solid #90979f38;
+  }
+  .flavor-text > p {
+    font-size: 20px;
+    font-weight: 500;
     padding: 10px;
     border-bottom: 1px solid #90979f38;
   }
