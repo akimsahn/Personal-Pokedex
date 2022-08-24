@@ -27,7 +27,7 @@ function App() {
     
   useEffect(() => {
     getPokemons()
-    console.log('loaded')
+    
     fetch('http://localhost:3001/pokemons')
     .then(res => res.json())
     .then(data => setInPokedex(data))
@@ -35,6 +35,9 @@ function App() {
 
   function handlePokedex(updatedPokemon, mode) {
     if (mode === "delete") {
+      fetch(`http://localhost:3001/pokemons/${updatedPokemon.id}`, {
+            method: 'DELETE'
+      })
       setInPokedex(inPokedex.filter(pokemon => pokemon.id !== updatedPokemon.id ? pokemon : null))
     } else if (mode === "replace") {
       setInPokedex(inPokedex.map(pokemon => pokemon.id !== updatedPokemon.id ? pokemon : updatedPokemon))

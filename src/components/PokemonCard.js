@@ -8,12 +8,7 @@ function PokemonCard({ pokemon, pokedex, handlePokedex }) {
 
     function handleClick() {
         if (!isInPokedex) {
-            const pokemonData = {
-                id: pokemon.id,
-                name: pokemon.name,
-                xp: pokemon.base_experience,
-                hp: pokemon.stats[0].base_stat,
-                image: pokemon.sprites.front_default,
+            const pokemonData = {...pokemon,
                 nickname: ""
             }
 

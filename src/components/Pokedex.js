@@ -2,14 +2,10 @@ import React, {useState} from "react";
 import { Link } from 'react-router-dom';
 
 function ListPokedex({ pokemon, handlePokedex }) {
-    const {id, name, image, hp, xp, nickname} = pokemon
+    const {id, name, sprites, stats, base_experience, nickname} = pokemon
     const [stateNickname, setStateNickname] = useState("")
 
     function handleClick() {
-        fetch(`http://localhost:3001/pokemons/${id}`, {
-            method: 'DELETE'
-        })
-
         handlePokedex(pokemon, "delete")
     }
 
@@ -35,14 +31,14 @@ function ListPokedex({ pokemon, handlePokedex }) {
     
     return (
         <div className='pokedex'>
-            <h4><span>❤️{hp}</span><span>{xp} XP</span></h4>
+            <h4><span>❤️{stats[0].base_stat}</span><span>{base_experience} XP</span></h4>
             <Link to={{
                 pathname: `/pokemon/${name}`,
                 state: {
                     pokemon
                 }
             }}>
-                <img src={image} alt={name} width="100px" />
+                <img src={sprites.front_default} alt={name} width="100px" />
             </Link>
             <h3>{name}</h3>
             <h4>{nickname !== "" ? `"${nickname}"` : '--'}</h4>

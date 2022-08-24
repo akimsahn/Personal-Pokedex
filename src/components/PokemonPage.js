@@ -1,69 +1,98 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from 'react-router-dom';
 import "./pokemonPage.css"
 
 function PokemonPage() {
   const [spriteDirection, setSpriteDirection] = useState(true)
+  const [pokemonFlavorText, setPokemonFlavorText] = useState([])
   const location = useLocation()
   const { pokemon } = location.state
+
+  useEffect(() => {
+      fetch(`${pokemon.species.url}`)
+      .then(resp => resp.json())
+      .then(data => setPokemonFlavorText(data.flavor_text_entries[6].flavor_text.replace("\f"," ")))
+  }, [])
+
+  console.log(pokemonFlavorText)
 
   const handleSprite = () => {
       setSpriteDirection(!spriteDirection)
   }
 
-    return (
+  return (
     <div
       style={{
         // zIndex: "10",
         position: "absolute",
         display: "flex",
-        top: "200px",
+        top: "160px",
         left: "0",
         width: "100%",
         // height: "110%",
-        alignItems: "center",
-        justifyContent: "space-evenly",
+        // alignItems: "center",
+        justifyContent: "center",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
       }}
     >
-      <div>
+      <div className="flavor-text">
         <img
+          width="450px"
           src={pokemon.sprites.other["official-artwork"].front_default}
           alt={pokemon.name}
           style={{filter: "drop-shadow(2px 4px 12px black)"}}
         />
+        <p>{pokemonFlavorText}</p>
       </div>
+      {/* <div
+        className="flavor-text"
+        style={{
+          zIndex: "10",
+          position: "absolute",
+          display: "flex",
+          top: "510px",
+          left: "0",
+          width: "50%",
+          height: "60%",
+          alignItems: "center",
+          justifyContent: "space-around",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+        }}
+      >
+        <p>{pokemonFlavorText}</p>
+      </div> */}
       <div
         style={{
           display: "flex",
           alignItems: "center",
-          justifyContent: "space-around",
+          justifyContent: "flex-start",
           flexDirection: "column",
           width: "450px",
           height: "500px",
         }}
       >
-      <div className="stat-container-title" style={{marginLeft: "0"}}>
-        <img  onClick={handleSprite} src={spriteDirection ? pokemon.sprites.front_default : pokemon.sprites.back_default} alt={pokemon.name} className="img-title"/>  
-        <p style={{width: "180px", color: "black"}}>No. {pokemon.id}</p>
-        <p>{pokemon.name}</p>
-      </div>
-      <div style={{display: "flex", width: "100%"}}>
-        <div
-          className="stats-left"
-          style={{background: "#dbdbd9", textAlign: "center", lineHeight:"20px"}}
-        >
-          <p>Type</p>
-          <p>Height</p>
-          <p>Weight</p>
+        <div className="stat-container-title" style={{marginLeft: "0"}}>
+          <img  onClick={handleSprite} src={spriteDirection ? pokemon.sprites.front_default : pokemon.sprites.back_default} alt={pokemon.name} className="img-title"/>  
+          <p style={{width: "180px", color: "black"}}>No. {pokemon.id}</p>
+          <p>{pokemon.name}</p>
         </div>
-        <div className="stats-right" style={{background: "#ffffff", lineHeight:"20px"}}>
-          <p>{pokemon.types[0].type.name} {pokemon.types[1] ? `/ ${pokemon.types[1].type.name}` : null}</p>
-          <p>{(pokemon.height/10)} m</p>
-          <p>{(pokemon.weight/10)} kg</p>
+        <div style={{display: "flex", width: "100%"}}>
+          <div
+            className="stats-left"
+            style={{background: "#dbdbd9", textAlign: "center", lineHeight:"20px"}}
+          >
+            <p>Type</p>
+            <p>Height</p>
+            <p>Weight</p>
+          </div>
+          <div className="stats-right" style={{background: "#ffffff", lineHeight:"20px"}}>
+            <p>{pokemon.types[0].type.name} {pokemon.types[1] ? `/ ${pokemon.types[1].type.name}` : null}</p>
+            <p>{(pokemon.height/10)} m</p>
+            <p>{(pokemon.weight/10)} kg</p>
+          </div>
         </div>
-      </div>
         <div className="base-stats" >
           <div>
               <p className="stats" style={{ lineHeight:"20px" }}>{pokemon.stats[0].stat.name}</p>
