@@ -17,14 +17,16 @@
     cursor: pointer;
   }
   .stats-left,
-  .stats-right {
+  .stats-right,
+  .flavor-text {
     display: flex;
     flex-direction: column;
     width: 50%;
     font-size: 20px;
   }
   .stats-left > p,
-  .stats-right > p {
+  .stats-right > p,
+  .flavor-text > p {
     font-size: 20px;
     font-weight: 500;
     text-transform: capitalize;

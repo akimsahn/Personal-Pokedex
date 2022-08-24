@@ -1,12 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from 'react-router-dom';
 import "./pokemonPage.css"
 
 
 function PokemonPage() {
     const [spriteDirection, setSpriteDirection] = useState(true)
+    const [pokemonFlavorText, setPokemonFlavorText] = useState([])
     const location = useLocation()
     const { pokemon } = location.state
+
+    useEffect(() => {
+        fetch(`${pokemon.species.url}`)
+        .then(resp => resp.json())
+        .then(data => setPokemonFlavorText(data.flavor_text_entries[6].flavor_text))
+    }, [])
+
+    console.log(pokemonFlavorText)
 
     const handleSprite = () => {
         setSpriteDirection(!spriteDirection)
@@ -34,6 +43,23 @@ function PokemonPage() {
           alt={pokemon.name}
           style={{filter: "drop-shadow(2px 4px 12px black)"}}
         />
+      </div>
+      <div
+      className="flavor-text"
+      style={{
+        zIndex: "10",
+        position: "fixed",
+        display: "flex",
+        top: "510px",
+        left: "0",
+        width: "50%",
+        height: "60%",
+        alignItems: "center",
+        justifyContent: "space-around",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        }}>
+      <p>{pokemonFlavorText}</p>
       </div>
       <div
         style={{
