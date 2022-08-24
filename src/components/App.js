@@ -27,32 +27,38 @@ function App() {
     
   useEffect(() => {
     getPokemons()
+    console.log('loaded')
+    fetch('http://localhost:3001/pokemons')
+    .then(res => res.json())
+    .then(data => setInPokedex(data))
   }, [])
 
-  // const renderPokemon = pokemons.map(pokemon => {
-  //   return <PokemonPage 
-  //     key = {pokemon.id}
-  //     id = {pokemon.id}
-  //     name = {pokemon.name}
-  //     image = {pokemon.sprites.other["official-artwork"]}
-  //     type = {pokemon.types[0].type.name}
-  //   />
-  // })
-
-  const displayInPokedex = pokemons.filter(pokemon => pokemon.inPokedex)
+  function handlePokedex(updatedPokemon, mode) {
+    if (mode === "delete") {
+      setInPokedex(inPokedex.filter(pokemon => pokemon.id !== updatedPokemon.id ? pokemon : null))
+    } else if (mode === "replace") {
+      setInPokedex(inPokedex.map(pokemon => pokemon.id !== updatedPokemon.id ? pokemon : updatedPokemon))
+    } else {
+      setInPokedex([...inPokedex, updatedPokemon])
+    }
+  }
 
   return (
     <div>
       <NavBar />
       <Switch>
         <Route path="/library">
-          <Library pokemons={pokemons} />
+          <Library
+            pokemons={pokemons}
+            pokedex={inPokedex}
+            handlePokedex={handlePokedex}
+          />
         </Route>
         <Route path="/pokedex">
-          <Pokedex pokemons={displayInPokedex} />
+          <Pokedex pokemons={inPokedex} handlePokedex={handlePokedex} />
         </Route>
-        <Route path="/pokemon/:id">
-          <PokemonPage pokemons={pokemons} />
+        <Route path="/pokemon/:name">
+          <PokemonPage />
         </Route>
       </Switch>
     </div>

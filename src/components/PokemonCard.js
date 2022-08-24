@@ -1,30 +1,48 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import pokeball from '../images/pokeball.png';
+import openBall from '../images/pokeball-open.png';
 
-function PokemonCard({ pokemon, onUpdatePokemon }) {
-    const {id, name, sprites, inPokedex} = pokemon;
+function PokemonCard({ pokemon, pokedex, handlePokedex }) {
+    const isInPokedex = pokedex.some(item => item.id === pokemon.id)
 
     function handleClick() {
-        fetch(`http://localhost:3001/pokemons/${id}`, {
-            method: 'PATCH',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({...pokemon,
-                inPokedex: !inPokedex,
+        if (!isInPokedex) {
+            const pokemonData = {
+                id: pokemon.id,
+                name: pokemon.name,
+                xp: pokemon.base_experience,
+                hp: pokemon.stats[0].base_stat,
+                image: pokemon.sprites.front_default,
+                nickname: ""
+            }
+
+            fetch('http://localhost:3001/pokemons', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(pokemonData)
             })
-        })
-        .then(res => res.json())
-        .then(data => onUpdatePokemon(data))
+            .then(res => res.json())
+            .then(data => handlePokedex(data, ""))
+        } else {
+            handlePokedex(pokemon, "delete")
+        }
     }
 
     return (
         <div className='card'>
-            <Link to={`/pokemon/${id}`}>
-                <img src={sprites.other["official-artwork"]["front_default"]} alt="pokemon_pic" />
+            <Link to={{
+                pathname: `/pokemon/${pokemon.name}`,
+                state: { 
+                    pokemon
+                }
+            }}>
+                <img src={pokemon.sprites.front_default} alt={pokemon.name} width="100px" />
             </Link>
-            <span id="add-button" onClick={handleClick}>{inPokedex ? '✖️' : '➕'}</span>
-            <h3>{name}</h3>
+            <img id="pokeball" onClick={handleClick} src={isInPokedex ? pokeball : openBall} alt="pokeball" />
+            <h3>{pokemon.name}</h3>
         </div>
     )
 }

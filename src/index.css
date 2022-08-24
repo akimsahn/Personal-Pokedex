@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  padding-top: 140px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -7,40 +8,70 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
 h1 {
   text-align: center;
 }
 
-h3 {
-  margin: 0 0 20px 0;
+h3, h4 {
+  margin: 0;
+}
+
+h4 {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+input, button {
+  margin-top: 5px;
+  text-align: center;
+  box-sizing: border-box;
+  border-radius: 5px;
+  width: 175px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  background-color: rgb(7, 7, 131);
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: blue;
 }
 
 .cardContainer {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin: 0 25px 0 25px;
 }
 
 .card {
-  display: inline-block;
   text-align: center;
-  width: 200px;
-  height: 150px;
+  width: 225px;
+  height: 200px;
 }
 
-.card img {
-  width: 100px;
+.pokedex {
+  text-align: center;
+  width: 225px;
+  height: 250px;
 }
 
 .navbar {
   background: url(./images/header.png);
   background-size: cover;
   height: 140px;
+  width: 100%;
+  top: 0;
+  position: fixed;
+  z-index: 1;
 }
 
 .navbar #links {
@@ -50,7 +81,8 @@ h3 {
   right: 20px;
 }
 
-#add-button {
+#pokeball {
+  width: 30px;
   position: absolute;
   cursor: pointer;
 }
