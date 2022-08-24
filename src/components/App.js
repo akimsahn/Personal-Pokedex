@@ -29,16 +29,6 @@ function App() {
     getPokemons()
   }, [])
 
-  // const renderPokemon = pokemons.map(pokemon => {
-  //   return <PokemonPage 
-  //     key = {pokemon.id}
-  //     id = {pokemon.id}
-  //     name = {pokemon.name}
-  //     image = {pokemon.sprites.other["official-artwork"]}
-  //     type = {pokemon.types[0].type.name}
-  //   />
-  // })
-
   const displayInPokedex = pokemons.filter(pokemon => pokemon.inPokedex)
 
   return (
