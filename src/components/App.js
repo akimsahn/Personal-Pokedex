@@ -11,7 +11,7 @@ function App() {
   const [inPokedex, setInPokedex] = useState([])
   
   const getPokemons = async () => {
-    const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=386")
+    const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=20")
     const data = await res.json()
 
     const createPokemonObject = (results) => {
@@ -51,7 +51,7 @@ function App() {
     <div>
       <NavBar />
       <Switch>
-        <Route path ="/home">
+        <Route exact path ="/">
           <HomePage />
         </Route>
         <Route path="/library">
@@ -62,7 +62,10 @@ function App() {
           />
         </Route>
         <Route path="/pokedex">
-          <Pokedex pokemons={inPokedex} handlePokedex={handlePokedex} />
+          <Pokedex
+            pokemons={inPokedex}
+            handlePokedex={handlePokedex}
+          />
         </Route>
         <Route path="/pokemon/:name">
           <PokemonPage 

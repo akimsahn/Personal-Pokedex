@@ -44,44 +44,32 @@ function PokemonPage({ pokedex, handlePokedex }) {
   return (
     <div
       style={{
-        // zIndex: "10",
         position: "absolute",
         display: "flex",
         top: "160px",
-        left: "0",
         width: "100%",
-        // height: "110%",
-        // alignItems: "center",
         justifyContent: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
+        gap: "5%"
       }}
     >
-      <div className="flavor-text">
-        <img
-          width="450px"
-          src={pokemon.sprites.other["official-artwork"].front_default}
-          alt={pokemon.name}
-          style={{filter: "drop-shadow(2px 4px 12px black)"}}
-        />
-      </div>
-      <div
-        className="flavor-text"
-        style={{
-          zIndex: "10",
-          position: "absolute",
-          display: "flex",
-          top: "410px",
-          left: "0",
-          width: "50%",
-          height: "60%",
-          alignItems: "center",
-          justifyContent: "space-around",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-        }}
-      >
-        <p>{pokemonFlavorText}</p>
+      <div style={{
+        display: "flex",
+        flexDirection: "column",
+        width: "600px",
+        alignItems: "center"
+        }}>
+        <div>
+          <img
+            className="flavor-text"
+            width="450px"
+            src={pokemon.sprites.other["official-artwork"].front_default}
+            alt={pokemon.name}
+            style={{filter: "drop-shadow(2px 4px 12px black)"}}
+          />
+        </div>
+        <div className="flavor-text">
+          <p>{pokemonFlavorText}</p>
+        </div>
       </div>
       <div
         style={{

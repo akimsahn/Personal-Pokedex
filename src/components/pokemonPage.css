@@ -21,8 +21,7 @@
     margin-left: 450px;
   }
   .stats-left,
-  .stats-right,
-  .flavor-text {
+  .stats-right {
     display: flex;
     flex-direction: column;
     width: 50%;
@@ -39,10 +38,11 @@
   .flavor-text {
     font-size: 20px;
     font-weight: 500;
-    padding: 10px;
     border-bottom: 1px solid #90979f38
   }
-  
+  .flavor-text p {
+    margin: 3px 0 10px 0;
+  }
   .base-stats {
     display: flex;
     width: 100%;

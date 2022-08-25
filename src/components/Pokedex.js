@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { Link } from 'react-router-dom';
 
-function ListPokedex({ pokemons, pokemon, handlePokedex }) {
+function ListPokedex({ pokemon, handlePokedex }) {
     const {id, name, sprites, stats, base_experience, nickname} = pokemon
     const [stateNickname, setStateNickname] = useState("")
 
