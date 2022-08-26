@@ -7,7 +7,6 @@ function Library({ pokedex }) {
     const { filteredPokemon, handleSearch } = usePokemon()
     const [isLibrary] = useState(true)
     
-
     return (
         <div className="main">
             <h1>Pokémon Library</h1>

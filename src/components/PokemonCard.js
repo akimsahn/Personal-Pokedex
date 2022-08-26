@@ -30,12 +30,13 @@ function PokemonCard({ pokemon }) {
 
     return (
         <div className='card'>
-            <Link to={{
+            {/* <Link to={{
                 pathname: `/${pokemon.name}`,
                 state: { 
                     pokemon
                 }
-            }}>
+            }}> */}
+            <Link to={`/${pokemon.name}`}>
                 <img src={pokemon.sprites.front_default} alt={pokemon.name} width="100px" />
             </Link>
             <img id="pokeball" onClick={handleClick} src={isInPokedex ? pokeball : openBall} alt="pokeball" />

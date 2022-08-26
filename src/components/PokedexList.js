@@ -2,7 +2,6 @@ import { useState } from "react"
 import { Link } from 'react-router-dom';
 import { usePokemon } from './PokemonContext'
 
-
 function PokedexList({ pokemon }) {
     const { handlePokedex } = usePokemon()
     const {id, name, sprites, stats, base_experience, nickname} = pokemon
@@ -35,12 +34,13 @@ function PokedexList({ pokemon }) {
     return (
         <div className='pokedex'>
             <h4><span>❤️{stats[0].base_stat}</span><span>{base_experience} XP</span></h4>
-            <Link to={{
+            {/* <Link to={{
                 pathname: `/${name}`,
                 state: {
                     pokemon
                 }
-            }}>
+            }}> */}
+            <Link to={`/${pokemon.name}`}>
                 <img src={sprites.front_default} alt={name} width="100px" />
             </Link>
             <h3>{name}</h3>

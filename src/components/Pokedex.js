@@ -3,9 +3,6 @@ import { usePokemon } from "./PokemonContext";
 import PokedexList from "./PokedexList.js";
 import SearchBar from "./SearchBar";
 
-
-
-
 function Pokedex() {
     const { filteredPokedexPokemon, handlePokedexSearch } = usePokemon()
     const [isLibrary] = useState(false)
