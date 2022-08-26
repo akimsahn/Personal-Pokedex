@@ -26,7 +26,7 @@ function App() {
           </Route>
       </Switch>
     </div>
-  );
+  )
 }
 
 export default App;
