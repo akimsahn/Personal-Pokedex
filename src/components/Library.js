@@ -5,7 +5,7 @@ import SearchBar from "./SearchBar"
 
 function Library({ pokedex }) {
     const {filteredPokemon, handleSearch} = usePokemon()
-    const [isLibrary, setIsLibrary] = useState(true)
+    const [isLibrary] = useState(true)
     
 
     return (
