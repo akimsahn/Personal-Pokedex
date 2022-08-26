@@ -11,7 +11,7 @@ function PokemonPage() {
   const [pokemonFlavorText, setPokemonFlavorText] = useState([])
   const location = useLocation()
   const { pokemon } = location.state
-    
+  
   const isInPokedex = filteredPokedexPokemon.some(item => item.id === pokemon.id)
  
  
@@ -86,7 +86,12 @@ function PokemonPage() {
         }}
       >
         <div className="stat-container-title" style={{marginLeft: "0"}}>
-          <img  onClick={handleSprite} src={spriteDirection ? pokemon.sprites.front_default : pokemon.sprites.back_default} alt={pokemon.name} className="img-title"/>  
+          <img  
+            onClick={handleSprite} 
+            src={spriteDirection ? pokemon.sprites.front_default : pokemon.sprites.back_default} 
+            alt={pokemon.name} 
+            className="img-title"
+          />  
           <p style={{width: "180px", color: "black"}}>No. {pokemon.id}</p>
           <p>{pokemon.name}</p>
           <img id="pokeball" onClick={handleClick} src={isInPokedex ? pokeball : openBall} alt="pokeball" className="pokeball-title"/>
