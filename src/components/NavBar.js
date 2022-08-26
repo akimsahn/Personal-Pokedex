@@ -1,4 +1,3 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
 import blueButton from "../images/blue-button.png"
 import rygButtons from "../images/ryg-buttons.png"
@@ -16,7 +15,7 @@ const linkStyles = {
 function NavBar() {
     return (
         <div className="navbar">
-            <NavLink to="/home">
+            <NavLink to="/">
                 <img id="blue-button" src={blueButton} alt="blue button" />
             </NavLink>
             <img id="colored-buttons" src={rygButtons} alt="ryg buttons" />
