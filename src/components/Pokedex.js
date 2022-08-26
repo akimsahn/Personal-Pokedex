@@ -1,70 +1,24 @@
-import React, {useState} from "react";
-import { Link } from 'react-router-dom';
+import { useState } from "react";
+import { usePokemon } from "./PokemonContext";
+import PokedexList from "./PokedexList.js";
+import SearchBar from "./SearchBar";
 
-function ListPokedex({ pokemon, handlePokedex }) {
-    const {id, name, sprites, stats, base_experience, nickname} = pokemon
-    const [stateNickname, setStateNickname] = useState("")
 
-    function handleClick() {
-        handlePokedex(pokemon, "delete")
-    }
 
-    function handleChange(e) {
-        setStateNickname(e.target.value)
-    }
 
-    function handleSubmit(e) {
-        e.preventDefault()
-        fetch(`http://localhost:3001/pokemons/${id}`, {
-            method: 'PATCH',
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({...pokemon,
-                nickname: stateNickname,
-            })
-        })
-        .then(res => res.json())
-        .then(data => handlePokedex(data, "replace"))
-        setStateNickname("")
-    }
-    
-    return (
-        <div className='pokedex'>
-            <h4><span>❤️{stats[0].base_stat}</span><span>{base_experience} XP</span></h4>
-            <Link to={{
-                pathname: `/pokemon/${name}`,
-                state: {
-                    pokemon
-                }
-            }}>
-                <img src={sprites.front_default} alt={name} width="100px" />
-            </Link>
-            <h3>{name}</h3>
-            <h4>{nickname !== "" ? `"${nickname}"` : '--'}</h4>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    value={stateNickname}
-                    onChange={handleChange}
-                    placeholder="Enter nickname"
-                />
-            </form>
-            <button onClick={handleClick}>Remove from Pokedex</button>
-        </div>
-    )
-}
+function Pokedex() {
+    const { filteredPokedexPokemon, handlePokedexSearch } = usePokemon()
+    const [isLibrary, setIsLibrary] = useState(false)
 
-function Pokedex({ pokemons, handlePokedex }) {
     return (
         <div className="main">
-            <h1>My Pokedex</h1>
+            <h1>My Pokédex</h1>
+            <SearchBar isLibrary={isLibrary} handleSearch={handlePokedexSearch}/>
             <div className="cardContainer">
-                {pokemons.map(pokemon => 
-                    <ListPokedex
+                {filteredPokedexPokemon.map(pokemon => 
+                    <PokedexList
                         key={pokemon.id}
                         pokemon={pokemon}
-                        handlePokedex={handlePokedex}
                     />
                 )}
             </div>

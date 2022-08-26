@@ -1,15 +1,19 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { usePokemon } from "./PokemonContext";
 import { useLocation } from 'react-router-dom';
 import pokeball from '../images/pokeball.png';
 import openBall from '../images/pokeball-open.png';
-import "./pokemonPage.css"
+import "../pokemonPage.css"
 
-function PokemonPage({ pokedex, handlePokedex }) {
+function PokemonPage() {
+  const { filteredPokedexPokemon, handlePokedex } = usePokemon()  
   const [spriteDirection, setSpriteDirection] = useState(true)
   const [pokemonFlavorText, setPokemonFlavorText] = useState([])
   const location = useLocation()
   const { pokemon } = location.state
-  const isInPokedex = pokedex.some(item => item.id === pokemon.id)
+    
+  const isInPokedex = filteredPokedexPokemon.some(item => item.id === pokemon.id)
+ 
  
   function handleClick() {
     if (!isInPokedex) {

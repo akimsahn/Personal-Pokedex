@@ -1,17 +1,23 @@
-import React from "react";
+import { useState } from 'react';
+import { usePokemon } from './PokemonContext'
 import PokemonCard from "./PokemonCard";
+import SearchBar from "./SearchBar"
 
-function Library({ pokemons, pokedex, handlePokedex }) {
+function Library({ pokedex }) {
+    const {filteredPokemon, handleSearch} = usePokemon()
+    const [isLibrary, setIsLibrary] = useState(true)
+    
+
     return (
         <div className="main">
-            <h1>Pokemon Library</h1>
+            <h1>Pokémon Library</h1>
+            <SearchBar isLibrary={isLibrary} handleSearch={handleSearch}/>
             <div className="cardContainer">
-                {pokemons.map(pokemon => 
+                {filteredPokemon.map(pokemon => 
                     <PokemonCard
                         key={pokemon.id}
                         pokemon={pokemon}
                         pokedex={pokedex}
-                        handlePokedex={handlePokedex}
                     />
                 )}
             </div>

@@ -1,4 +1,3 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
 import blueButton from "../images/blue-button.png"
 import rygButtons from "../images/ryg-buttons.png"

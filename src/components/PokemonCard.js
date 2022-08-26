@@ -1,10 +1,12 @@
-import React from 'react';
+import { usePokemon } from './PokemonContext'
 import { Link } from 'react-router-dom';
 import pokeball from '../images/pokeball.png';
 import openBall from '../images/pokeball-open.png';
 
-function PokemonCard({ pokemon, pokedex, handlePokedex }) {
-    const isInPokedex = pokedex.some(item => item.id === pokemon.id)
+function PokemonCard({ pokemon }) {
+    const { filteredPokedexPokemon, handlePokedex } = usePokemon()
+
+    const isInPokedex = filteredPokedexPokemon.some(item => item.id === pokemon.id)
 
     function handleClick() {
         if (!isInPokedex) {
@@ -29,7 +31,7 @@ function PokemonCard({ pokemon, pokedex, handlePokedex }) {
     return (
         <div className='card'>
             <Link to={{
-                pathname: `/pokemon/${pokemon.name}`,
+                pathname: `/${pokemon.name}`,
                 state: { 
                     pokemon
                 }
